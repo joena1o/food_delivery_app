@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:fooddeliveryapp/Api/CheckOutClass.dart';
 import 'package:fooddeliveryapp/Screens/Locations.dart';
 import 'package:geocoding/geocoding.dart';
@@ -43,8 +46,57 @@ class _CheckOutPageState extends State<CheckOutPage> {
   void initState() {
     super.initState();
 
-    print(widget.qty);
+    plugin.initialize(publicKey: publicKey);
   }
+
+
+  //PayStack Integration
+
+  var publicKey = 'pk_test_c80e690675c0c74e2acc8df13ba30f6d50f5738c';
+  final plugin = PaystackPlugin();
+
+
+
+  void _showMessage(String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  //used to generate a unique reference for payment
+  String _getReference() {
+    var platform = (Platform.isIOS) ? 'iOS' : 'Android';
+    final thisDate = DateTime.now().millisecondsSinceEpoch;
+    return 'ChargedFrom${platform}_$thisDate';
+  }
+
+  //async method to charge users card and return a response
+  chargeCard(price) async {
+    var charge = Charge()
+      ..amount = widget.price *
+          100 //the money should be in kobo hence the need to multiply the value by 100
+      ..reference = _getReference()
+      ..putCustomField('custom_id',
+          '846gey6w') //to pass extra parameters to be retrieved on the response from Paystack
+      ..email = "mamakuchalirestaurant@gmail.com";
+
+    CheckoutResponse response = await plugin.checkout(
+      context,
+      method: CheckoutMethod.card,
+      charge: charge,
+    );
+
+    //check if the response is true or not
+    if (response.status == true) {
+      //you can send some data from the response to an API or use webhook to record the payment on a database
+      _showMessage('Payment was successful!!!');
+    } else {
+      //the payment wasn't successsful or the user cancelled the payment
+      _showMessage('Payment Failed!!!');
+    }
+  }
+
+
+  //PayStack Integration
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -335,15 +387,17 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
                   }
 
+                  chargeCard(widget.price);
 
 
-                  chck.checkOut(widget.order, "jonathanhyefur@gmail.com", widget.price, "08021388758", widget.qty, location, address, lat, lng).
-                  then((value){
 
-                    if(value=="Successful")
-                      Navigator.of(context).pop();
-
-                  });
+//                  chck.checkOut(widget.order, "jonathanhyefur@gmail.com", widget.price, "08021388758", widget.qty, location, address, lat, lng).
+//                  then((value){
+//
+//                    if(value=="Successful")
+//                      Navigator.of(context).pop();
+//
+//                  });
 
                 },
                 child: Text("Pay now", style: TextStyle(color: Colors.white)),
@@ -444,9 +498,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
         ));
   }
 
-  void _showMessage(String message) {
-    final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.black, duration: Duration(seconds: 1),);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+
 
 }
