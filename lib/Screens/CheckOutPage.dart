@@ -326,6 +326,17 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 color: Colors.red,
                 onPressed: () {
 
+
+                  if(location == "Not Specified"){
+
+                    _showMessage("Please Edit Delivery Address");
+
+                    return;
+
+                  }
+
+
+
                   chck.checkOut(widget.order, "jonathanhyefur@gmail.com", widget.price, "08021388758", widget.qty, location, address, lat, lng).
                   then((value){
 
@@ -432,4 +443,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
           ],
         ));
   }
+
+  void _showMessage(String message) {
+    final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.black, duration: Duration(seconds: 1),);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
 }

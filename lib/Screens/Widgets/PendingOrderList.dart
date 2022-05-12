@@ -4,11 +4,36 @@ import '../Tracking.dart';
 import 'ImageCom.dart';
 
 class PendList extends StatefulWidget {
+
+  PendList({Key? key, this.data}):super(key:key);
+
+  var data;
+
   @override
   _PendListState createState() => _PendListState();
 }
 
 class _PendListState extends State<PendList> {
+
+  List Data = [];
+
+  void initState(){
+
+    super.initState();
+
+
+    setState((){
+
+      Data = [widget.data];
+
+    });
+
+
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -51,27 +76,27 @@ class _PendListState extends State<PendList> {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text("Lasagna and cheese"),
+                      child: Text("${Data[0]['order_items']}"),
                     ),
 
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text("Price: N5000"),
+                      child: Text("Price: N${Data[0]['cost']}"),
                     ),
 
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text("Quantity: 3"),
+                      child: Text("Quantity: ${Data[0]['quantity']}"),
                     ),
 
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text("Order Date: 27/06/2021"),
+                      child: Text("Order Date: ${(Data[0]['date'])}"),
                     ),
 
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text("Order Time: 3:00pm"),
+                      child: Text("Order Time: ${Data[0]['time']}"),
                     ),
 
 

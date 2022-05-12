@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryapp/Api/HomeClass.dart';
 
 import 'Widgets/NoticeList.dart';
 
@@ -8,6 +9,35 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationState extends State<NotificationScreen> {
+
+  List Notice = [];
+
+  HomeClass home = HomeClass();
+
+  void initState(){
+
+    super.initState();
+
+    FetchNotice();
+
+
+  }
+
+
+  FetchNotice(){
+
+    home.FetchNotice("jonathanhyefur@gmail.com").then((value){
+
+      setState((){
+
+        Notice = value;
+
+      });
+
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,7 +62,7 @@ class _NotificationState extends State<NotificationScreen> {
                 CircleAvatar(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
-                  child: Text("10"),
+                  child: Text("${Notice.length}"),
                 )
               ],
             ),
@@ -41,9 +71,9 @@ class _NotificationState extends State<NotificationScreen> {
             width: size.width,
             height: size.height*.79,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: Notice.length,
               itemBuilder: (BuildContext ctx, i) {
-                return NoticeList();
+                return NoticeList(notice: [Notice[i]],);
               },
             ),
           )

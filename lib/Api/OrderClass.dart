@@ -26,4 +26,17 @@ class OrderClass{
   }
 
 
+  FetchPending(user) async{
+
+
+    var res = await http.get(Uri.parse(conn+"/fetchPending/${user}"));
+
+    var response = json.decode(res.body);
+
+    return response;
+
+
+
+  }
+
 }

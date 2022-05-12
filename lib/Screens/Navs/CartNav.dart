@@ -133,6 +133,9 @@ class _CartNavState extends State<CartNav> {
               right: size.width*.1,
               child: GestureDetector(
                   onTap: (){
+
+                    if(cart.length==0)
+                      return;
                     Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (_)=> CheckOutPage(price: estimatePrice(), cart: cart, order: ProcessOrder(), qty: estimateQuantity(),)
@@ -141,7 +144,7 @@ class _CartNavState extends State<CartNav> {
                   },
                   child:Container(
                     decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: (cart.length==0)?Colors.grey:Colors.red,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(

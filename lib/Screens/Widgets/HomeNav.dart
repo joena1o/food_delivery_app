@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../ProfilePage.dart';
 import 'ImageCom.dart';
 
 class HomeNav extends StatefulWidget {
@@ -51,9 +52,15 @@ class _HomeNavState extends State<HomeNav> {
               shape: BoxShape.circle,
               color: Colors.black
             ),
-            child: ClipRRect(
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_)=> ProfilePage())
+                );
+              },
+              child:ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child:Text("H", style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),),
+              child:Text("H", style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),)),
             )
           )
           ,

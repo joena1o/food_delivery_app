@@ -23,4 +23,28 @@ class HomeClass{
   }
 
 
+  FetchNotice(user) async{
+
+
+    try{
+
+      var res = await http.get(Uri.parse(conn+"/fetchNotice/${user}"));
+
+      var response = jsonDecode(res.body);
+
+      return response;
+
+    }catch(e){
+
+      return null;
+
+    }
+
+
+
+
+
+  }
+
+
 }

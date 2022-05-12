@@ -135,10 +135,10 @@ class _TrendingItemsState extends State<TrendingItems> {
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color:Colors.black,
+                                color:(Item[i]['status']=="available")?Colors.black:Colors.red,
                               ),
 
-                              child: Text("Available", style: TextStyle(color:Colors.white, fontSize: 12),)
+                              child: Text("${Item[i]['status']}", style: TextStyle(color:Colors.white, fontSize: 12),)
 
                           )))
                 ],

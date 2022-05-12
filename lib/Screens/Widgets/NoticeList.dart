@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NoticeList extends StatelessWidget {
+
+  NoticeList({Key?key, this.notice}):super(key: key);
+
+  var notice;
+
   @override
   Widget build(BuildContext context) {
 
@@ -12,7 +17,9 @@ class NoticeList extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       width: size.width,
       color: Colors.grey[100],
-      child: Text("New Notification Appeared, your order has been confirmed"),
+      child: (notice[0]['notice_type']=="confirm")?
+      Text("Your Order has been confirmed and will be prepared for delivery shortly", style: TextStyle(fontWeight: FontWeight.bold),
+          ):Text("Your order has been pack and ready for delivery",style: TextStyle(fontWeight: FontWeight.bold)),
 
     );
   }

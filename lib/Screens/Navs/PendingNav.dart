@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryapp/Api/OrderClass.dart';
 import 'package:fooddeliveryapp/Screens/Widgets/PendingOrderList.dart';
 
 class PendingNav extends StatefulWidget {
@@ -7,20 +8,53 @@ class PendingNav extends StatefulWidget {
 }
 
 class _PendingNavState extends State<PendingNav> {
+
+
+  List pending = [];
+
+  OrderClass orderClass = OrderClass();
+
+
+  FetchPending(){
+
+    orderClass.FetchPending("jonathanhyefur@gmail.com").then((value){
+
+      setState(() {
+
+        pending = value;
+
+
+      });
+
+    });
+
+  }
+
+
+  void initState(){
+
+    super.initState();
+
+
+    FetchPending();
+
+
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
-
-    List pending = [];
 
     Size size = MediaQuery.of(context).size;
 
     return ListView.builder(
 
-        itemCount: pending.length+1,
+        itemCount: pending.length,
 
         itemBuilder: (BuildContext ctx, i){
 
-          return PendList();
+          return PendList(data: pending[i]);
 
         },
 

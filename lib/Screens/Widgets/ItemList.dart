@@ -89,15 +89,15 @@ class _ItemListState extends State<ItemList> {
                           top:5,
                           left: 5,
                           child:Opacity(
-                          opacity:0.6,
+                          opacity:0.7,
                           child:Container(
                             padding: EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color:Colors.black,
+                              color:(Item[0]['status']=="available")?Colors.black:Colors.red,
                             ),
 
-                            child: Text("Available", style: TextStyle(color:Colors.white, fontSize: 12),)
+                            child: Text("${Item[0]['status']}", style: TextStyle(color:Colors.white, fontSize: 12),)
 
                       )))
 

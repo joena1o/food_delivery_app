@@ -218,7 +218,7 @@ class _ItemScreenState extends State<ItemScreen> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
 
-                  child: Text("Available", style: TextStyle(fontSize: 15, color:Colors.green, fontWeight: FontWeight.bold),),
+                  child: Text("${Item[0]['status']}", style: TextStyle(fontSize: 15, color:(Item[0]['status']=="available")?Colors.green:Colors.red, fontWeight: FontWeight.bold),),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 20),
@@ -447,9 +447,10 @@ class _ItemScreenState extends State<ItemScreen> {
       bottomNavigationBar: BottomAppBar(
         
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
           child: (!order && !review)?Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
               Container(
@@ -475,42 +476,14 @@ class _ItemScreenState extends State<ItemScreen> {
               )
               
             ],
-          ):((order)?Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-
+          ):((order)?
               Container(
-                width: size.width*.15,
+               width: size.width*.67,
                 height: size.height*.06,
-                decoration: BoxDecoration(
-//                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: IconButton(
-                  onPressed: (){
-                    
-                    product.AddToCart("jonathanhyefur@gmail.com", Item[0]['item_id'], qty).then((value){
 
-
-                      if(value != "failed"){
-
-                        _showMessage("Order added to cart");
-
-                      }
-
-                    });
-
-                  },
-                  icon: Icon(Icons.shopping_bag),
-                ),
-              ),
-
-              Container(
-                width: size.width*.67,
-                height: size.height*.06,
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(15)
                 ),
                 child: GestureDetector(
 
@@ -518,17 +491,41 @@ class _ItemScreenState extends State<ItemScreen> {
 
                     setState((){
 
-                      order = false;
+                      product.AddToCart("jonathanhyefur@gmail.com", Item[0]['item_id'], qty).then((value){
+
+
+                        if(value != "failed"){
+
+                          _showMessage("Order added to cart");
+
+                        }
+
+                      });
 
                     });
 
                   },
-                  child: Center(child:Text("Order Only", style: TextStyle(color:Colors.white, fontSize: 15),)),
-                ),
-              )
+                  child: Center(child:Row(
 
-            ],
-          ):Container(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
+                    children: [
+
+                      Icon(Icons.shopping_bag, color: Colors.white,),
+
+                     Container(
+                       width: 20,
+                     ),
+
+
+                     Text("Add to cart", style: TextStyle(color:Colors.white, fontSize: 17, fontWeight: FontWeight.bold),)
+
+                    ],
+                  ),
+                ),
+              ))
+
+           :Container(
             width: size.width*.82,
             height: size.height*.06,
             padding: EdgeInsets.all(12),
