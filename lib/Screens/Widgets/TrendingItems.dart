@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../ItemScreen.dart';
 import 'ImageCom.dart';
 
 
@@ -45,7 +46,17 @@ class _TrendingItemsState extends State<TrendingItems> {
           itemCount: Item.length,
           itemBuilder: (BuildContext ctx, i){
 
-            return Container(
+            return GestureDetector(
+                onTap: (){
+
+                  Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (_)=> ItemScreen(item: Item[i],)
+                      )
+                  );
+
+              },
+                child:Container(
               margin: EdgeInsets.symmetric(horizontal: 10),
               width: size.width*.66,
               height: size.height*.35,
@@ -130,12 +141,12 @@ class _TrendingItemsState extends State<TrendingItems> {
                       top:10,
                       left: 10,
                       child:Opacity(
-                          opacity:0.6,
+                          opacity:0.7,
                           child:Container(
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color:(Item[i]['status']=="available")?Colors.black:Colors.red,
+                                color:(Item[i]['status']=="Available")?Colors.green:Colors.red,
                               ),
 
                               child: Text("${Item[i]['status']}", style: TextStyle(color:Colors.white, fontSize: 12),)
@@ -143,7 +154,7 @@ class _TrendingItemsState extends State<TrendingItems> {
                           )))
                 ],
               ),
-            );
+            ));
 
       })
     );

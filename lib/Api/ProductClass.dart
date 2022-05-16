@@ -71,6 +71,24 @@ class ProductClass{
 
 
 
+  PostReview(user, id, review, rating)async{
+
+    var res = await http.post(Uri.parse(conn+"/review"), body: jsonEncode({
+      "user":user,
+      "rating":rating,
+      "id": id,
+      "review": review
+    }), headers: {"content-type":"application/json"});
+
+    var response = res.body;
+
+    return response;
+
+  }
+
+
+
+
 
   FetchFavorite(user) async{
 

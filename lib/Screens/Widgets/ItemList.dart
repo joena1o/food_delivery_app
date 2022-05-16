@@ -94,10 +94,10 @@ class _ItemListState extends State<ItemList> {
                             padding: EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color:(Item[0]['status']=="available")?Colors.black:Colors.red,
+                              color:(Item[0]['status']=="Available")?Colors.green:Colors.red,
                             ),
 
-                            child: Text("${Item[0]['status']}", style: TextStyle(color:Colors.white, fontSize: 12),)
+                            child: Text(("${Item[0]['status']}"), style: TextStyle(color:Colors.white, fontSize: 12),)
 
                       )))
 

@@ -60,7 +60,7 @@ class _SavedState extends State<Saved> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Favorite", style: TextStyle(fontSize: 16),),
+                Text("Favourite", style: TextStyle(fontSize: 16),),
                 CircleAvatar(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
@@ -114,7 +114,7 @@ class _SavedState extends State<Saved> {
                             children: [
                               Text("${saved[i]['item_name']}"),
                               Container(height: 20,),
-                              Text("N${saved[i]['item_price']}"),
+                              Text("N${saved[i]['item_price']}", style: TextStyle(fontSize: 15, color: Colors.black54, fontWeight: FontWeight.bold),),
                               Container(height: 20,),
                               Text("Dish", style:TextStyle(fontStyle: FontStyle.italic,color: Colors.orange))
                             ],

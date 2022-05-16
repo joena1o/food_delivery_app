@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/Api/ProductClass.dart';
 
 import 'Widgets/ImageCom.dart';
+import 'package:provider/provider.dart';
+import '../Providers/cart_provider.dart';
 
 class ItemScreen extends StatefulWidget {
 
@@ -218,7 +220,7 @@ class _ItemScreenState extends State<ItemScreen> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
 
-                  child: Text("${Item[0]['status']}", style: TextStyle(fontSize: 15, color:(Item[0]['status']=="available")?Colors.green:Colors.red, fontWeight: FontWeight.bold),),
+                  child: Text(("${Item[0]['status']}"), style: TextStyle(fontSize: 15, color:(Item[0]['status']=="Available")?Colors.green:Colors.red, fontWeight: FontWeight.bold),),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 20),
@@ -226,7 +228,7 @@ class _ItemScreenState extends State<ItemScreen> {
                   child: Text("${Item[0]['item_name']}", style: TextStyle(fontSize: 21),),
                 ),
 
-                Text("Dish"),
+                Text("Dish", style: TextStyle(color:Colors.deepOrange, fontWeight: FontWeight.bold), ),
 
                 Container(
                   height: 20,
@@ -234,12 +236,28 @@ class _ItemScreenState extends State<ItemScreen> {
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 15),
 
+                  child: Row(
+                    children: [
+                      Icon(Icons.timer),
+                      Container(width: 10,),
+                      Text("Preparation Time", style: TextStyle(fontSize: 16, color: Colors.black),)
+                    ],
+                  ),
+                ),
+
+                Padding(padding: EdgeInsets.symmetric(vertical: 15),
+
+                  child: Text("30-45 min", style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),),
+                ),
+
+                Padding(padding: EdgeInsets.symmetric(vertical: 20),
+
                   child: Text("Price", style: TextStyle(fontSize: 18, color: Colors.black),),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 10),
 
-                  child: Text("N${Item[0]['item_price']}", style: TextStyle(fontSize: 15, color:Colors.grey),),
+                  child: Text("N${Item[0]['item_price']}", style: TextStyle(fontSize: 17, color:Colors.grey, fontWeight: FontWeight.bold),),
                 ),
 
 
@@ -250,7 +268,7 @@ class _ItemScreenState extends State<ItemScreen> {
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 10),
 
-                  child: Text("${Item[0]['item_desc']}", style: TextStyle(fontSize: 15, color:Colors.grey),),
+                  child: Text("${Item[0]['item_desc']}", style: TextStyle(fontSize: 15, color:Colors.grey, fontWeight: FontWeight.bold),),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -386,6 +404,8 @@ class _ItemScreenState extends State<ItemScreen> {
                                 SizedBox(height: 10,),
                                 Text("N${Item[0]['item_price']}", style: TextStyle(fontSize:16, color:Colors.deepOrange)),
                                 SizedBox(height: 30,),
+
+
                                 Text("Quantity:", style: TextStyle(fontSize:15),),
                                 SizedBox(height: 20,),
                                 Row(
@@ -457,12 +477,21 @@ class _ItemScreenState extends State<ItemScreen> {
                 width: size.width*.82,
                 height: size.height*.06,
                 decoration: BoxDecoration(
-                  color: Colors.red,
+                  color: (Item[0]['status']=="Available")?Colors.red:Colors.grey,
                   borderRadius: BorderRadius.circular(20)
                 ),
                 child: GestureDetector(
 
                   onTap: (){
+
+                    if(Item[0]['status']!="Available"){
+
+                      _showMessage("Item is unavailable at the moment");
+                      
+                      return;
+                      
+                    }
+                      
 
                     setState((){
 
@@ -496,7 +525,10 @@ class _ItemScreenState extends State<ItemScreen> {
 
                         if(value != "failed"){
 
-                          _showMessage("Order added to cart");
+
+                          context.read<CartProvider>().increment("d");
+
+                          _showMessage("Item added to cart");
 
                         }
 
@@ -537,9 +569,26 @@ class _ItemScreenState extends State<ItemScreen> {
 
               onTap: (){
 
-                setState((){
+                showDialog(
+                  context: context,
+                  builder: (_){
 
-                  order = true;
+                    return Center(
+                        child: CircularProgressIndicator(),
+
+
+                    );
+                  }
+                );
+
+                product.PostReview("Jonathanhyefur@gmail.com", Item[0]['item_id'], review_text.text.toString(), rating).then((value){
+
+                  if(value=="Posted"){
+                    Navigator.of(context).pop();
+                    _showMessage("Review Posted");
+                    review_text.text = "";
+                  }
+
 
                 });
 

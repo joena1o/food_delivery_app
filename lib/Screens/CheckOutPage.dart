@@ -72,7 +72,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
   //async method to charge users card and return a response
   chargeCard(price) async {
     var charge = Charge()
-      ..amount = widget.price *
+      ..amount = price *
           100 //the money should be in kobo hence the need to multiply the value by 100
       ..reference = _getReference()
       ..putCustomField('custom_id',
@@ -142,7 +142,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          ("Checkout").toUpperCase(),
+          ("Check-Out"),
           style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
         ),
         backgroundColor: Colors.grey[200],
@@ -371,7 +371,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total: N${widget.price}",
+                "Total: N${widget.price} + 500",
                 style: TextStyle(fontSize: 16),
               ),
               FlatButton(
@@ -387,7 +387,14 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
                   }
 
-                  chargeCard(widget.price);
+                  try{
+
+                    chargeCard((widget.price+500).round());
+
+                  }catch(e){
+                    print(e.toString());
+                  }
+
 
 
 
@@ -490,7 +497,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       Container(
                         width: 20,
                       ),
-                      Text("Add Location")
+                      Text("Set From Map")
                     ],
                   ),
                 ))

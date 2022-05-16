@@ -46,5 +46,26 @@ class HomeClass{
 
   }
 
+  ReadNotice(user) async {
+
+    try{
+
+
+      var res = await http.get(Uri.parse(conn+"/seenStat/${user}"));
+
+      var response = res.body;
+
+      return response;
+
+
+
+    }catch(e){
+
+      print(e.toString());
+      return null;
+    }
+
+  }
+
 
 }

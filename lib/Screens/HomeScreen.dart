@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/Api/HomeClass.dart';
+import 'package:fooddeliveryapp/Providers/cart_provider.dart';
+import 'package:provider/src/provider.dart';
 import 'NotificationScreen.dart';
 import 'OrderScreen.dart';
 import 'SavedScreen.dart';
@@ -68,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: (nav == 1)?HomeScreen(context):((nav == 2)?SearchScreen(callBack:changeNav):((nav == 3)?Saved():
 
       (nav==4)?NotificationScreen():OrderScreen())),
+
 
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -181,20 +184,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 Positioned(
 
                     child:CircleAvatar(
-                  radius: 13.5,
+                  radius: 14.7,
                   backgroundColor: Colors.orangeAccent,
-                  child: Icon(Icons.shopping_cart,size: 15,color: Colors.white,),
+                  child: Icon(Icons.shopping_cart,size: 19,color: Colors.white,),
                 )),
 
-                Positioned(
+                Visibility(
+                    visible:(context.watch<CartProvider>().cart != 0)?true:false,
+                    child:Positioned(
                   right: 0,
                   top:0,
                   child: CircleAvatar(
                     radius: 8,
                     backgroundColor: Colors.red,
-                    child: Text("1", style: TextStyle(fontSize: 10),),
+                    child: Text("${context.watch<CartProvider>().cart}", style: TextStyle(fontSize: 10),),
                   ),
-                )
+                ))
               ],
             ))
 
@@ -244,14 +249,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           child: Row(
                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
 
                               Icon(Icons.location_on, size: 30, color: Colors.deepOrange,),
 
                               Container(
-                                width: size.width*.76,
-                                child: Text("Kofare Industrial Layout, Wurro Jabbe", overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 14, color: Colors.black54, fontWeight: FontWeight.bold),),
-                              )
+                                width: size.width*.70,
+                                child: Text("Kofare Industrial Layout, Wurro Jabbe", overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 15, color: Colors.black54, fontWeight: FontWeight.bold),),
+                              ),
+
+                              Icon(Icons.arrow_drop_down, size: 30, color: Colors.deepOrange,),
 
                             ],
                           ),

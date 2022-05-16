@@ -20,6 +20,8 @@ class _NotificationState extends State<NotificationScreen> {
 
     FetchNotice();
 
+    ReadNotice();
+
 
   }
 
@@ -33,6 +35,16 @@ class _NotificationState extends State<NotificationScreen> {
         Notice = value;
 
       });
+
+    });
+
+  }
+
+  ReadNotice(){
+
+    home.ReadNotice("jonathanhyefur@gmail.com").then((value){
+
+      print(value);
 
     });
 

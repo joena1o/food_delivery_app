@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/Wrapper.dart';
+import 'package:provider/provider.dart';
+
+import 'Providers/cart_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(providers: [
+        
+        ChangeNotifierProvider(create: (_)=> CartProvider())
+
+      ], child: MyApp()
+
+      ));
+
 }
 
 class MyApp extends StatelessWidget {

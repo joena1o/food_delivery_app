@@ -101,7 +101,7 @@ class _LocationState extends State<LocationPage> {
                         controller: address,
                         maxLines: 3,
                         decoration: InputDecoration(
-                          hintText: "Your Address"
+                          hintText: "Enter your address, house or street number"
                         ),
 
                       )

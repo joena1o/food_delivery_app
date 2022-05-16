@@ -16,10 +16,10 @@ class NoticeList extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       width: size.width,
-      color: Colors.grey[100],
+      color: (notice[0]['read_']=="true")?Colors.transparent:Colors.grey[100],
       child: (notice[0]['notice_type']=="confirm")?
-      Text("Your Order has been confirmed and will be prepared for delivery shortly", style: TextStyle(fontWeight: FontWeight.bold),
-          ):Text("Your order has been pack and ready for delivery",style: TextStyle(fontWeight: FontWeight.bold)),
+      Text("Your Order has been confirmed and will be prepared for delivery shortly", style: TextStyle(fontWeight: (notice[0]['read_']=="true")?FontWeight.normal:FontWeight.bold, color:Colors.black87),
+          ):Text("Your order has been pack and ready for delivery",style: TextStyle(fontWeight: (notice[0]['read_']=="true")?FontWeight.normal:FontWeight.bold, color:Colors.black87)),
 
     );
   }

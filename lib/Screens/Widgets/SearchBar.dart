@@ -22,7 +22,7 @@ class SearchBar extends StatelessWidget {
           Container(width: 20,),
           Container(
             width: size.width*0.57,
-            child: Text("Search Item", style: TextStyle(fontSize: 14, color:Colors.black54, fontWeight: FontWeight.normal),),
+            child: Text("Search Desired foods", style: TextStyle(fontSize: 14, color:Colors.black54, fontWeight: FontWeight.normal),),
           ),
           Container(
               decoration: BoxDecoration(

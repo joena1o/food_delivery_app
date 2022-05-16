@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/Api/OrderClass.dart';
+import 'package:fooddeliveryapp/Providers/cart_provider.dart';
+//import 'package:fooddeliveryapp/Providers/cart_provider.dart';
 import 'package:fooddeliveryapp/Screens/Widgets/ItemList.dart';
 import '../CheckOutPage.dart';
+import 'package:provider/provider.dart';
 import '../Widgets/CartItemList.dart';
 
 class CartNav extends StatefulWidget {
@@ -219,14 +222,17 @@ class _CartNavState extends State<CartNav> {
 
                     cart.removeAt(index);
 
+
+
                   });
 
                   _showMessage("1 item removed from cart");
 
-
                 }
 
               });
+
+
 
               showDialog(
                 context: context,
@@ -236,6 +242,8 @@ class _CartNavState extends State<CartNav> {
 
               )
               );
+
+              context.read<CartProvider>().increment("o");
 
             },
             child:Container(

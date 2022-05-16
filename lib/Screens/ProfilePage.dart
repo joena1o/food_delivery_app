@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'EditProfile.dart';
 import 'Widgets/ImageCom.dart';
 
 
@@ -39,18 +40,26 @@ class _ProfilePageState extends State<ProfilePage> {
 
               child: Column(
 
+
+
                 children: [
 
 
-                    Container(
+                    Center(child:Container(
                       width: size.width*.4,
                       height: size.width*.4,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                           child:ImageCom()),
-                    ),
+                    )),
 
-                    Container(
+                    GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_)=>EditProfile())
+                          );
+                        },
+                        child:Container(
                         margin: EdgeInsets.symmetric(vertical: 20),
                       padding: EdgeInsets.all(7),
                       decoration: BoxDecoration(
@@ -59,40 +68,40 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       child: Text("Edit Profile", style: TextStyle(fontWeight: FontWeight.normal),)
 
-                    ),
+                    )),
 
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(7),
-                        child: Text("Hyefur Jonathan", style: TextStyle(fontWeight: FontWeight.bold),)
-
-                    ),
-
-                    Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.all(7),
-                        child: Text("08021388758", style: TextStyle(fontWeight: FontWeight.bold),)
+                        child: Text("Hyefur Jonathan", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
 
                     ),
 
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(7),
-                        child: Text("jonathanhyefur@gmail.com", style: TextStyle(fontWeight: FontWeight.bold),)
+                        child: Text("08021388758", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
 
                     ),
 
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(7),
-                        child: Text("Address", style: TextStyle(fontWeight: FontWeight.bold),)
+                        child: Text("jonathanhyefur@gmail.com", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
 
                     ),
 
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(7),
-                        child: Text("Location", style: TextStyle(fontWeight: FontWeight.bold),)
+                        child: Text("Address", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
+
+                    ),
+
+                    Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.all(7),
+                          child: Text("Sign Out", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),)
 
                     ),
 
