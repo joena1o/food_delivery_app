@@ -298,8 +298,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 25),
-                          child: Text("Popular Dishes",
+                              horizontal: 25, vertical: 35),
+                          child: Text("Popular Orders",
                             style: TextStyle(fontSize: 16, letterSpacing: 1),),
                         ),
 
@@ -308,7 +308,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 25),
+                              horizontal: 20, vertical: 20),
+                          margin: EdgeInsets.only(top:20),
                           child: Text(
                             "Menu Items", style: TextStyle(fontSize: 16),),
                         ),

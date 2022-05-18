@@ -220,7 +220,7 @@ class _ItemScreenState extends State<ItemScreen> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
 
-                  child: Text(("${Item[0]['status']}"), style: TextStyle(fontSize: 15, color:(Item[0]['status']=="Available")?Colors.green:Colors.red, fontWeight: FontWeight.bold),),
+                  child: Text(("${Item[0]['status']}"), style: TextStyle(fontSize: 17, color:(Item[0]['status']=="Available")?Colors.green:Colors.red, fontWeight: FontWeight.bold),),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(vertical: 20),
@@ -228,7 +228,7 @@ class _ItemScreenState extends State<ItemScreen> {
                   child: Text("${Item[0]['item_name']}", style: TextStyle(fontSize: 21),),
                 ),
 
-                Text("Dish", style: TextStyle(color:Colors.deepOrange, fontWeight: FontWeight.bold), ),
+                Text(("${Item[0]['item_cat']}").toUpperCase(), style: TextStyle(color:Colors.deepOrange,  letterSpacing: 1, fontWeight: FontWeight.bold), ),
 
                 Container(
                   height: 20,

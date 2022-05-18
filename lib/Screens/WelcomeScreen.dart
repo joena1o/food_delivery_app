@@ -26,8 +26,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   TextEditingController cpass = TextEditingController();
 
 
-//  TextEditingController name = TextEditingController();
-
   var _formkey = GlobalKey<FormState>();
 
 

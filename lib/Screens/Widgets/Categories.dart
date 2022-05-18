@@ -9,7 +9,7 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
 
-  List catItem = ["burger.png", "cuba-libre.png", "ice-cream.png", "meal.png", 'ice-cream.png'];
+  List catItem = ["burger.png", "cuba-libre.png", "chips.png", "meal.png", 'ice-cream.png'];
 
   List Items = ['Fastfood', 'Drinks', 'Snack', 'Dish', 'Dessert'];
 

@@ -41,7 +41,8 @@ class _TrendingItemsState extends State<TrendingItems> {
       width: size.width,
       height: size.height*.35,
       child: ListView.builder(
-//        reverse: true,
+
+          //reverse: true,
           scrollDirection: Axis.horizontal,
           itemCount: Item.length,
           itemBuilder: (BuildContext ctx, i){

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/Api/OrderClass.dart';
 import 'package:fooddeliveryapp/Providers/cart_provider.dart';
-//import 'package:fooddeliveryapp/Providers/cart_provider.dart';
 import 'package:fooddeliveryapp/Screens/Widgets/ItemList.dart';
 import '../CheckOutPage.dart';
 import 'package:provider/provider.dart';
