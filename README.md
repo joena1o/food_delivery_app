@@ -3,6 +3,8 @@
 
 A new Flutter application.
 
+No Authentication, click sign up with google to use
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
