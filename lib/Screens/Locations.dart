@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:search_map_location/utils/google_search/latlng.dart';
 import 'package:search_map_location/utils/google_search/place.dart';
 import 'package:search_map_location/widget/search_widget.dart';
+import 'package:flutter_config/flutter_config.dart';
 
 class LocationPage extends StatefulWidget {
 
@@ -16,6 +17,8 @@ class LocationPage extends StatefulWidget {
 class _LocationState extends State<LocationPage> {
 
   var location;
+
+  var apikey = FlutterConfig.get("API_KEY");
 
   TextEditingController address = TextEditingController();
 
@@ -48,7 +51,7 @@ class _LocationState extends State<LocationPage> {
                   location: LatLng(latitude: 9.173719,  longitude: 12.415134),
                   radius: 1100,
                   country: 'NG',
-                  apiKey: "AIzaSyCiet_FcKQLiHioow4uunEJ8TrtWS8wUsc", // YOUR GOOGLE MAPS API KEY
+                  apiKey: apikey, // YOUR GOOGLE MAPS API KEY
                   onSelected: (Place place) async{
 
                     final geolocation = await place.geolocation;

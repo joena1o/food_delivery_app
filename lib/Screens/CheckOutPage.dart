@@ -7,6 +7,7 @@ import 'package:fooddeliveryapp/Screens/Locations.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:fooddeliveryapp/Screens/Widgets/ImageCom.dart';
+import 'package:flutter_config/flutter_config.dart';
 
 class CheckOutPage extends StatefulWidget {
   CheckOutPage({Key? key, this.price, this.cart, this.order, required this.qty})
@@ -31,6 +32,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
   var location = "Not Specified";
   var address = "Not Specified";
 
+
+
   var lat, lng;
 
 
@@ -52,7 +55,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   //PayStack Integration
 
-  var publicKey = 'pk_test_c80e690675c0c74e2acc8df13ba30f6d50f5738c';
+  var publicKey = FlutterConfig.get("PUBLIC_KEY");
   final plugin = PaystackPlugin();
 
 

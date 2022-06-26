@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_config/flutter_config.dart';
 
 class LocationTrack extends StatefulWidget {
   @override
@@ -14,6 +15,8 @@ class _LocationTrackState extends State<LocationTrack> {
   bool zoomDriver = true;
   bool loaded = false;
 
+
+  var apikey = FlutterConfig.get("API_KEY");
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -295,7 +298,7 @@ class _LocationTrackState extends State<LocationTrack> {
   setPolyLines()async {
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        'AIzaSyCiet_FcKQLiHioow4uunEJ8TrtWS8wUsc',
+      apikey,
 
         PointLatLng(latV, lngV),
 

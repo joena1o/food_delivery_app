@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'CheckOutPage.dart';
-import 'Navs/CartNav.dart';
-import 'Navs/DeliveredNav.dart';
-import 'Navs/PendingNav.dart';
+import 'CartTabs/CartNav.dart';
+import 'CartTabs/DeliveredNav.dart';
+import 'CartTabs/PendingNav.dart';
 
 class OrderScreen extends StatefulWidget {
   @override
